@@ -1,0 +1,20 @@
+.footer {
+	text-align: center;
+}
+
+.todo {
+	background: url('../img/bodybackground.jpg');
+
+}
+
+.taskwhite {
+	color: white;
+}
+
+#bordwhite {
+	background-color: transparent;
+} 
+
+#inputTaskname {
+	color: black;
+}

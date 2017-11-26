@@ -1,0 +1,44 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>Todo</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/todo.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>   
+</head>
+<body>
+    <div class="todo" id="app">   
+        <div class="container">            
+          <div class="jumbotron">
+            <button @click="logout" class="btn btn-primary btn-xs pull-right">Logout</button>
+            <a :href="picture"> <img :src="picture">  </a>                   
+            <h1>Welcome {{ name }} </h1>       
+            <p>Add your task list and keep your track here.</p>
+          </div>     
+        </div>
+
+
+        <div class="showComponent">                  
+             <component :is="currentView" :edittaskid="taskId" :edituserid="userId" :todos="todos" :token="token" @change-view="changeView" keep-alive></component> 
+            <!-- <todo-show :todos="todos" :token="token"/> -->
+        </div>
+
+
+        <div class="showfooter"> 
+            <footer class="footer">
+                <p>&copy; 2017 {{developer}}    .</p>
+            </footer> 
+        </div>     
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
+    <script src="assets/js/todo-show.js"></script>  
+    <script src="assets/js/edit-todo.js"></script> 
+    <script src="assets/js/todo-handler.js"></script>          
+</body>
+</html>
+
+
