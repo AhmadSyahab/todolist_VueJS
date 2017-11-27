@@ -54,7 +54,8 @@ methods: {
 
       if(this.edittaskid != undefined){
         this.name = localStorage.getItem("name")
-        axios.get(`http://localhost:3000/task/${this.edittaskid}`,{
+        // axios.get(`http://api.amartodo.ga/task/${this.edittaskid}`,{
+          axios.get(`http://localhost:3010/task/${this.edittaskid}`,{
           'headers' : {
             'token' : this.token,
             'userid': this.edituserid,
@@ -62,9 +63,9 @@ methods: {
           }
         })
         .then(response => {
-          console.log(response)
+          // console.log(response)
           this.tasks = response.data
-          console.log(this.tasks)
+          // console.log(this.tasks)
         })
         .catch(err => {
           console.log(err);
@@ -72,7 +73,8 @@ methods: {
       }else{
         // task.userId.name = localStorage.getItem("name");
         this.name = localStorage.getItem("name")
-        axios.get(`http://localhost:3000/task/`,{
+        // axios.get(`http://api.amartodo.ga/task/`,{
+         axios.get(`http://localhost:3010/task/`,{ 
           'headers' : {
             'token' : this.token,
             'userid': this.edituserid,
@@ -80,9 +82,9 @@ methods: {
           }
         })
         .then(response => {
-          console.log(response.data)
+          // console.log(response.data)
           this.tasks = response.data.task
-          console.log(this.tasks)
+          // console.log(this.tasks)
         })
         .catch(err => {
           console.log(err);
@@ -97,13 +99,14 @@ methods: {
     },
 
     editTask : function(idTask){
-      axios.put(`http://localhost:3000/task/${idTask}`,{
+      // axios.put(`http://api.amartodo.ga/task/${idTask}`,{
+        axios.put(`http://localhost:3010/task/${idTask}`,{
           'token' : this.token,
           'taskId': idTask,
           'taskname' : this.taskname
       })
       .then(response => {
-        console.log(response);
+        // console.log(response);
         location.reload();
       })
       .catch(err => {

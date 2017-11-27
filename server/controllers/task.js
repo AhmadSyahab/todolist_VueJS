@@ -56,16 +56,21 @@ function update(req,res) {
 }
 
 function remove(req,res) {
-	Task.remove({
-		_id : ObjectId(req.headers.taskid),
-		userId : ObjectId(req.headers.id)
-	}, (err, task) => {
-		if(err){
-			res.status(500).send(err)
-		}else{
-			// console.log(task)
-			res.send(task)
-		}
+	Task.findOne({
+		_id: req.headers.taskid
+	})
+	.then(result => {
+		Task.remove({
+			_id : ObjectId(req.headers.taskid),
+			userId : ObjectId(req.headers.id)
+		}, (err, task) => {
+			if(err){
+				res.status(500).send(err)
+			}else{
+				// console.log(task)
+				res.send(result)
+			}
+		})
 	})
 }
 
@@ -83,13 +88,22 @@ function done(req,res) {
 				createdAt : task.createdAt,
 				finishDate : Date.now()				
 			})
-			task.save((err, updatedTask) => {
-				if(err){
-					res.status(500).send(err);
-				}else{
-					res.send(updatedTask);
-				}				
+			task.save()
+
+
+
+			User.findOne({
+				_id : ObjectId(req.headers.id)
+			}).populate('task').exec()
+			.then(allTask => {
+				res.send(allTask);
 			})
+			.catch(err => {
+				res.status(500).send({err: err.errmsg})
+			})	
+
+
+
 		}else{
 			res.status(500).send(err)
 		}
@@ -110,13 +124,16 @@ function unDone(req,res) {
 				createdAt : task.createdAt,
 				finishDate : null				
 			})
-			task.save((err, updatedTask) => {
-				if(err){
-					res.status(500).send(err);
-				}else{
-					res.send(updatedTask);
-				}				
+			task.save()
+			User.findOne({
+				_id : ObjectId(req.headers.id)
+			}).populate('task').exec()
+			.then(allTask => {
+				res.send(allTask);
 			})
+			.catch(err => {
+				res.status(500).send({err: err.errmsg})
+			})				
 		}else{
 			res.status(500).send(err)
 		}

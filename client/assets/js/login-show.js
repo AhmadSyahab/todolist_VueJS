@@ -111,14 +111,15 @@ Vue.component('login-show', {
   },
   methods : {
     loginProcess: function(){
-      axios.post('http://localhost:3000/signin', {
+      // axios.post('http://api.amartodo.ga/signin', {
+        axios.post('http://localhost:3010/signin', {
         username : this.username,
         password : this.password
       })
       .then(response => {
         alert("Login Success")
-        console.log("masukkkkkkkkkkkkkkkkkk",response)
-        console.log(response.data)
+        // console.log("masukkkkkkkkkkkkkkkkkk",response)
+        // console.log(response.data)
         localStorage.setItem('token', response.data.token); 
         localStorage.setItem('userId', response.data.user._id); 
         localStorage.setItem('name', response.data.user.name); 
@@ -145,13 +146,16 @@ Vue.component('login-show', {
 
         FB.getLoginStatus(function(response) {
             FB.login(function(response){
+              // console.log(response)
               if(response.status == "connected"){
-                axios.post('http://localhost:3000/signIn/facebook', {
+                // console.log("masuk ga")
+                // axios.post('http://api.amartodo.ga/signIn/facebook', {
+                  axios.post('http://localhost:3010/signIn/facebook', {
                   accessToken : response.authResponse.accessToken,
                   fbId : response.authResponse.userID 
                 })
                 .then(function (response) {
-                  console.log(response)
+                  // console.log(response)
                   localStorage.setItem("picture", response.data.response.picture.data.url);
                   localStorage.setItem("token", response.data.token);
                   localStorage.setItem("userId", response.data.userId);
@@ -179,7 +183,8 @@ Vue.component('login-show', {
 
     },
     submitform: function() {
-      axios.post('http://localhost:3000/signup', {
+      // axios.post('http://api.amartodo.ga/signup', {
+        axios.post('http://localhost:3010/signup', {
         name : this.name,
         username : this.username,
         password : this.password,

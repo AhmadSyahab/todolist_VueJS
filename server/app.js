@@ -15,6 +15,7 @@ logger = require('morgan'),
 app.use(logger('dev'))
 
 mongoose.connect(process.env.DB)
+// mongoose.connect('mongodb://localhost:27017/blog');
 
 // const url = 'mongodb://localhost:27017/library';
 
@@ -26,4 +27,4 @@ app.use(bodyParser.json())
 app.use('/', User)
 
 
-app.listen(3000)
+app.listen(3010)

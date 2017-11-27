@@ -138,7 +138,7 @@ function create(req,res) {
 			}else{
 				user.task.push(task)
 				user.save()
-				res.send(user);
+				res.send(task);
 			}
 		})
 	})

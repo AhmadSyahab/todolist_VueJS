@@ -21,7 +21,7 @@
 
 
         <div class="showComponent">                  
-             <component :is="currentView" :edittaskid="taskId" :edituserid="userId" :todos="todos" :token="token" @change-view="changeView" keep-alive></component> 
+             <component :is="currentView" :edittaskid="taskId" :edituserid="userId" :todos="todos" :token="token" @change-view="changeView" @get-task="updateTask" keep-alive></component> 
             <!-- <todo-show :todos="todos" :token="token"/> -->
         </div>
 
