@@ -13,7 +13,6 @@ new Vue({
   },
   methods: {
   	changeView: function(payload){
-  		console.log(payload)
       if(payload.todos){
 
       }
@@ -29,8 +28,8 @@ new Vue({
       if(!this.token){
       	window.location.replace('/index.html')
       }
-      // axios.get('http://api.amartodo.ga/task',{
-        axios.get('http://localhost:3010/task',{
+      axios.get('http://ec2-34-216-160-66.us-west-2.compute.amazonaws.com:3010/task',{
+        // axios.get('http://localhost:3010/task',{
         'headers' : {
           'token' : this.token,
           'userid': this.userid,
@@ -54,7 +53,6 @@ new Vue({
     updateTask : function(payload){
         // console.log(payload)
         if(payload.remove){
-          console.log(this.todos[0])
           this.todos.forEach((todo,index) => {
             if(todo._id == payload.remove){
               this.todos.splice(index,1)

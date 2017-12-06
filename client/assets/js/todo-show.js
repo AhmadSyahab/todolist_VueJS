@@ -55,16 +55,12 @@
 methods: {
     changeStatus : function(taskStatus,status){
       if(status == false){
-        // axios.put(`http://api.amartodo.ga/checklist/${taskStatus}`,{
-          axios.put(`http://localhost:3010/checklist/${taskStatus}`,{
+        axios.put(`http://ec2-34-216-160-66.us-west-2.compute.amazonaws.com:3010/checklist/${taskStatus}`,{
+          // axios.put(`http://localhost:3010/checklist/${taskStatus}`,{
           'token' : this.token,
           'taskId': taskStatus
         })
         .then(response => {
-          console.log(taskStatus)   
-          console.log(response)
-          response.data.task;
-
           this.$emit('get-task', {
             todos : response.data.task,
           })   
@@ -76,8 +72,8 @@ methods: {
         })        
       }
       if(status == true){
-        // axios.put(`http://api.amartodo.ga/unchecklist/${taskStatus}`,{
-          axios.put(`http://localhost:3010/unchecklist/${taskStatus}`,{
+        axios.put(`http://ec2-34-216-160-66.us-west-2.compute.amazonaws.com:3010/unchecklist/${taskStatus}`,{
+          // axios.put(`http://localhost:3010/unchecklist/${taskStatus}`,{
           'token' : this.token,
           'taskId': taskStatus
         })
@@ -95,14 +91,12 @@ methods: {
     },
     addTodo : function(){     
       // console.log(this.todos)
-      console.log("initoken", this.token)
-      // axios.post('http://api.amartodo.ga/task',{
-        axios.post('http://localhost:3010/task',{
+      axios.post('http://ec2-34-216-160-66.us-west-2.compute.amazonaws.com:3010/task',{
+        // axios.post('http://localhost:3010/task',{
         token : this.token,      
         taskname : this.task
       })
       .then(response => {
-        console.log(response.data);
          this.$emit('get-task', {
             newTask : response.data
           })
@@ -114,8 +108,8 @@ methods: {
       })
     },
     removeTodo : function(taskDelete){
-      // axios.delete(`http://api.amartodo.ga/task/${taskDelete}`,{
-        axios.delete(`http://localhost:3010/task/${taskDelete}`,{
+      axios.delete(`http://ec2-34-216-160-66.us-west-2.compute.amazonaws.com:3010/task/${taskDelete}`,{
+        // axios.delete(`http://localhost:3010/task/${taskDelete}`,{
         'headers' : {
           'token' : this.token,
           'taskId': taskDelete,
@@ -123,8 +117,6 @@ methods: {
         }
       })
       .then(response => {
-        console.log(response);
-
         this.$emit('get-task', {
           remove : response.data._id
         })
@@ -136,7 +128,6 @@ methods: {
       })
     },
     editTask : function(idTask, idUser){
-      console.log(idTask,idUser)
         this.$emit('change-view', {
           currentView : 'edit-todo',
           taskId : idTask,

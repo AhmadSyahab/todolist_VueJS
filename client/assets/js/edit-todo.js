@@ -54,8 +54,8 @@ methods: {
 
       if(this.edittaskid != undefined){
         this.name = localStorage.getItem("name")
-        // axios.get(`http://api.amartodo.ga/task/${this.edittaskid}`,{
-          axios.get(`http://localhost:3010/task/${this.edittaskid}`,{
+        axios.get(`http://ec2-34-216-160-66.us-west-2.compute.amazonaws.com:3010/task/${this.edittaskid}`,{
+          // axios.get(`http://localhost:3010/task/${this.edittaskid}`,{
           'headers' : {
             'token' : this.token,
             'userid': this.edituserid,
@@ -73,8 +73,8 @@ methods: {
       }else{
         // task.userId.name = localStorage.getItem("name");
         this.name = localStorage.getItem("name")
-        // axios.get(`http://api.amartodo.ga/task/`,{
-         axios.get(`http://localhost:3010/task/`,{ 
+        axios.get(`http://ec2-34-216-160-66.us-west-2.compute.amazonaws.com:3010/task/`,{
+         // axios.get(`http://localhost:3010/task/`,{ 
           'headers' : {
             'token' : this.token,
             'userid': this.edituserid,
@@ -99,8 +99,8 @@ methods: {
     },
 
     editTask : function(idTask){
-      // axios.put(`http://api.amartodo.ga/task/${idTask}`,{
-        axios.put(`http://localhost:3010/task/${idTask}`,{
+      axios.put(`http://ec2-34-216-160-66.us-west-2.compute.amazonaws.com:3010/task/${idTask}`,{
+        // axios.put(`http://localhost:3010/task/${idTask}`,{
           'token' : this.token,
           'taskId': idTask,
           'taskname' : this.taskname

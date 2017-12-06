@@ -111,8 +111,8 @@ Vue.component('login-show', {
   },
   methods : {
     loginProcess: function(){
-      // axios.post('http://api.amartodo.ga/signin', {
-        axios.post('http://localhost:3010/signin', {
+      axios.post('http://ec2-34-216-160-66.us-west-2.compute.amazonaws.com:3010/signin', {
+        // axios.post('http://localhost:3010/signin', {
         username : this.username,
         password : this.password
       })
@@ -149,8 +149,8 @@ Vue.component('login-show', {
               // console.log(response)
               if(response.status == "connected"){
                 // console.log("masuk ga")
-                // axios.post('http://api.amartodo.ga/signIn/facebook', {
-                  axios.post('http://localhost:3010/signIn/facebook', {
+                axios.post('http://ec2-34-216-160-66.us-west-2.compute.amazonaws.com:3010/signIn/facebook', {
+                  // axios.post('http://localhost:3010/signIn/facebook', {
                   accessToken : response.authResponse.accessToken,
                   fbId : response.authResponse.userID 
                 })
@@ -183,8 +183,8 @@ Vue.component('login-show', {
 
     },
     submitform: function() {
-      // axios.post('http://api.amartodo.ga/signup', {
-        axios.post('http://localhost:3010/signup', {
+      axios.post('http://ec2-34-216-160-66.us-west-2.compute.amazonaws.com:3010/signup', {
+        // axios.post('http://localhost:3010/signup', {
         name : this.name,
         username : this.username,
         password : this.password,
